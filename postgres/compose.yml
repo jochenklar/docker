@@ -1,0 +1,8 @@
+services:
+  db:
+    image: postgres:${TAG:-latest}
+    ports:
+    - "${PORT:-5432}:5432"
+    volumes:
+    - ./volumes/data:/var/lib/postgresql/data
+    env_file: .env

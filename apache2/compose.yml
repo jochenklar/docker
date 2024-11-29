@@ -1,0 +1,9 @@
+services:
+  web:
+    build: .
+    volumes:
+    - ./default.conf:/etc/apache2/sites-available/000-default.conf:ro
+    - "${ROOT}:/var/www/"
+    ports:
+    - "${PORT}:80"
+    env_file: .env

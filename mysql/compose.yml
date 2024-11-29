@@ -1,0 +1,8 @@
+services:
+  db:
+    image: mysql:${TAG:-latest}
+    ports:
+    - "${PORT:-3306}:3306"
+    volumes:
+    - ./volumes/mysql:/var/lib/mysql
+    env_file: .env

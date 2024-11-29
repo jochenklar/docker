@@ -1,0 +1,6 @@
+services:
+  cache:
+    image: redis:${TAG:-latest}
+    ports:
+    - "${PORT:-6379}:6379"
+    env_file: .env
