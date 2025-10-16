@@ -1,0 +1,9 @@
+services:
+  httpd:
+    image: httpd:latest
+    ports:
+    - "${PORT:-8080}:80"
+    volumes:
+    - ./conf/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
+    - ./conf/extra/httpd-vhosts.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf:ro
+    - ./htdocs:/usr/local/apache2/htdocs/:ro

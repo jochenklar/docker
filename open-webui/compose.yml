@@ -1,0 +1,13 @@
+services:
+  app:
+    image: ghcr.io/open-webui/open-webui:${TAG:-main}
+    ports:
+    - "${PORT:-8888}:8080"
+    volumes:
+    - data:/app/backend/data
+    extra_hosts:
+    - "host.docker.internal:host-gateway"
+    env_file: .env
+
+volumes:
+  data:

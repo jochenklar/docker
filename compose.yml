@@ -1,0 +1,9 @@
+services:
+  db:
+    image: vladgh/minidlna
+    network_mode: host
+    volumes:
+    - ${MEDIA_DIR}:/media:ro
+    environment:
+      MINIDLNA_MEDIA_DIR: /media
+    env_file: .env

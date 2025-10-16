@@ -4,4 +4,4 @@ up:
 	docker-compose up
 
 clean:
-	docker-compose rm && rm -r volumes
+	docker-compose rm

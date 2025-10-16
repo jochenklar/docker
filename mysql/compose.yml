@@ -4,5 +4,8 @@ services:
     ports:
     - "${PORT:-3306}:3306"
     volumes:
-    - ./volumes/mysql:/var/lib/mysql
+    - data:/var/lib/mysql
     env_file: .env
+
+volumes:
+  data:

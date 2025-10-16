@@ -3,4 +3,9 @@ services:
     image: redis:${TAG:-latest}
     ports:
     - "${PORT:-6379}:6379"
+    volumes:
+      - data:/data
     env_file: .env
+
+volumes:
+  data:

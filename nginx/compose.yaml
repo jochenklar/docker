@@ -1,0 +1,9 @@
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+    - "${PORT:-8080}:80"
+    volumes:
+    - ./templates:/etc/nginx/templates:ro
+    - ./snippets:/etc/nginx/snippets:ro
+    - ./html:/usr/share/nginx/html:ro

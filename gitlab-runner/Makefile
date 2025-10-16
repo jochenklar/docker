@@ -1,10 +1,16 @@
-.PHONY: up clean
+.PHONY: up down daemon logs clean
 
 up:
 	docker-compose up
 
-register:
-	docker-compose run runner register  # Executor should be `docker`
+down:
+	docker-compose down
 
 clean:
-	docker-compose rm && rm -r volumes
+	docker-compose down -v
+
+daemon:
+	docker-compose up -d
+
+logs:
+	docker-compose logs -f
