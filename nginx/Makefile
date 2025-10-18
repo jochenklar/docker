@@ -1,4 +1,7 @@
-.PHONY: up down daemon logs clean
+.PHONY: daemon up down logs clean
+
+daemon:
+	docker-compose up -d
 
 up:
 	docker-compose up
@@ -8,9 +11,6 @@ down:
 
 clean:
 	docker-compose down -v
-
-daemon:
-	docker-compose up -d
 
 logs:
 	docker-compose logs -f
