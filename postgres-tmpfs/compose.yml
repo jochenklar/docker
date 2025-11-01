@@ -4,5 +4,5 @@ services:
     ports:
     - "${PORT:-5432}:5432"
     tmpfs:
-    - /var/lib/postgresql/data
+    - /var/lib/postgresql
     env_file: .env
