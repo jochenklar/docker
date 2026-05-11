@@ -1,0 +1,23 @@
+services:
+  jupyterhub:
+    build: .
+    container_name: jupyterhub
+    ports:
+    - "${PORT:-8000}:8000"
+    volumes:
+    - ./jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py:ro
+    - jupyterhub-data:/srv/jupyterhub
+    - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+    - jupyterhub-network
+    environment:
+      DOCKER_HOST: unix:///var/run/docker.sock
+    env_file: .env
+
+volumes:
+  jupyterhub-data:
+  jupyterhub-user-data:
+
+networks:
+  jupyterhub-network:
+    name: jupyterhub-network
