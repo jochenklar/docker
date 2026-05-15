@@ -5,7 +5,9 @@ services:
     - "${PORT:-3306}:3306"
     volumes:
     - data:/var/lib/mysql
-    env_file: .env
+    environment:
+    - MYSQL_ROOT_HOST=${MYSQL_ROOT_HOST:-%}
+    - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:?password required}
 
 volumes:
   data:

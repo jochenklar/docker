@@ -1,15 +1,13 @@
 services:
   pi:
     build: .
-    image: pi-agent
+    image: pi
     stdin_open: true
     tty: true
     volumes:
-      - ./workspace:/workspace
-      - pi-config:/home/pi/.pi
+    - ./pi:/home/pi
+    - ./skills:/home/pi/.agents/skills:ro
+    - ./workspace:/workspace
     environment:
-      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+    - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
     working_dir: /workspace
-
-volumes:
-  pi-config:
