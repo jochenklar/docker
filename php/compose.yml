@@ -6,4 +6,3 @@ services:
     volumes:
     - ./vhosts/default.conf:/etc/apache2/sites-available/000-default.conf:ro
     - ./php/:/var/www/php/
-    env_file: .env

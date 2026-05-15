@@ -12,7 +12,6 @@ services:
     - jupyterhub-network
     environment:
       DOCKER_HOST: unix:///var/run/docker.sock
-    env_file: .env
 
 volumes:
   jupyterhub-data:

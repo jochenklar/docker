@@ -7,7 +7,6 @@ services:
     - ssh:/root/.ssh/
     - gitlab-runner:/etc/gitlab-runner/
     - /var/run/docker.sock:/var/run/docker.sock
-    env_file: .env
 
 volumes:
   ssh:
