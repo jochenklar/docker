@@ -1,0 +1,80 @@
+# common config for all profiles
+x-common: &common
+  stdin_open: true
+  tty: true
+  security_opt:
+    - no-new-privileges:true
+  cap_drop:
+    - ALL
+  env_file:
+    - path: ./.env
+      required: false
+
+services:
+  pi:
+    <<: *common
+    image: pi:latest
+    build:
+      context: .
+      target: pi
+      args:
+        UID: ${AGENT_UID:-1000}
+        GID: ${AGENT_GID:-1000}
+    volumes:
+      - pi:/home/agent
+      - ${WORKSPACE_PATH:-./workspace}:/workspace
+      - ${SKILLS_PATH:-./skills}:/home/agent/.pi/agent/skills
+      - ${MODELS_JSON:-./default/models.json}:/home/agent/.pi/agent/models.json
+    profiles: [pi]
+
+  claude:
+    <<: *common
+    image: claude:latest
+    build:
+      context: .
+      target: claude
+      args:
+        UID: ${AGENT_UID:-1000}
+        GID: ${AGENT_GID:-1000}
+    volumes:
+      - claude:/home/agent
+      - ${WORKSPACE_PATH:-./workspace}:/workspace
+      - ${SKILLS_PATH:-./skills}:/home/agent/.claude/skills
+    profiles: [claude]
+
+  codex:
+    <<: *common
+    image: codex:latest
+    build:
+      context: .
+      target: codex
+      args:
+        UID: ${AGENT_UID:-1000}
+        GID: ${AGENT_GID:-1000}
+    volumes:
+      - codex:/home/agent
+      - ${WORKSPACE_PATH:-./workspace}:/workspace
+      - ${SKILLS_PATH:-./skills}:/home/agent/.codex/skills/
+    profiles: [codex]
+
+  tau:
+    <<: *common
+    image: tau:latest
+    build:
+      context: .
+      target: tau
+      args:
+        UID: ${AGENT_UID:-1000}
+        GID: ${AGENT_GID:-1000}
+    volumes:
+      - tau:/home/agent
+      - ${WORKSPACE_PATH:-./workspace}:/workspace
+      - ${SKILLS_PATH:-./skills}:/home/agent/.tau/skills
+      - ${CATALOG_TOML:-./default/catalog.toml}:/home/agent/.tau/catalog.toml
+    profiles: [tau]
+
+volumes:
+  pi:
+  claude:
+  codex:
+  tau:
