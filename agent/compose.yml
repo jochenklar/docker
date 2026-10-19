@@ -22,7 +22,7 @@ services:
         GID: ${AGENT_GID:-1000}
     volumes:
       - pi:/home/agent
-      - ${WORKSPACE_PATH:-./workspace}:/workspace
+      - ${WORKSPACE_PATH:-./workspace}:/home/agent/workspace
       - ${SKILLS_PATH:-./skills}:/home/agent/.pi/agent/skills
       - ${MODELS_JSON:-./default/models.json}:/home/agent/.pi/agent/models.json
     profiles: [pi]
@@ -38,7 +38,7 @@ services:
         GID: ${AGENT_GID:-1000}
     volumes:
       - claude:/home/agent
-      - ${WORKSPACE_PATH:-./workspace}:/workspace
+      - ${WORKSPACE_PATH:-./workspace}:/home/agent/workspace
       - ${SKILLS_PATH:-./skills}:/home/agent/.claude/skills
     profiles: [claude]
 
@@ -53,7 +53,7 @@ services:
         GID: ${AGENT_GID:-1000}
     volumes:
       - codex:/home/agent
-      - ${WORKSPACE_PATH:-./workspace}:/workspace
+      - ${WORKSPACE_PATH:-./workspace}:/home/agent/workspace
       - ${SKILLS_PATH:-./skills}:/home/agent/.codex/skills/
     profiles: [codex]
 
@@ -68,7 +68,7 @@ services:
         GID: ${AGENT_GID:-1000}
     volumes:
       - tau:/home/agent
-      - ${WORKSPACE_PATH:-./workspace}:/workspace
+      - ${WORKSPACE_PATH:-./workspace}:/home/agent/workspace
       - ${SKILLS_PATH:-./skills}:/home/agent/.tau/skills
       - ${CATALOG_TOML:-./default/catalog.toml}:/home/agent/.tau/catalog.toml
     profiles: [tau]

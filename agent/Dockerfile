@@ -27,11 +27,11 @@ RUN apk add --no-cache --update \
 RUN addgroup -g "${GID}" -S "${GROUP}"
 RUN adduser -S "${USER}" -u "${UID}" -G "${GROUP}" -h "${HOME}" -s "/bin/sh"
 
-RUN mkdir -p /workspace /opt/env /opt/npm /opt/python
-RUN chown -R "${USER}:${GID}" "${HOME}" /workspace /opt/env /opt/npm /opt/python
+RUN mkdir -p /home/agent/workspace /opt/env /opt/npm /opt/python
+RUN chown -R "${USER}:${GID}" "${HOME}" /home/agent/workspace /opt/env /opt/npm /opt/python
 
 USER "${USER}"
-WORKDIR /workspace
+WORKDIR /home/agent/workspace
 
 ENV VIRTUAL_ENV="/opt/env" \
     UV_PROJECT_ENVIRONMENT="/opt/env" \
