@@ -52,6 +52,15 @@ RUN mkdir -p /home/agent/.pi/agent
 
 CMD ["pi"]
 
+## opencode
+
+FROM agent AS opencode
+
+RUN npm install -g opencode-ai@latest
+RUN mkdir -p /home/agent/.config/opencode
+
+CMD ["opencode", "--auto"]
+
 ## claude
 
 FROM agent AS claude

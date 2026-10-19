@@ -73,8 +73,25 @@ services:
       - ${CATALOG_TOML:-./default/catalog.toml}:/home/agent/.tau/catalog.toml
     profiles: [tau]
 
+  opencode:
+    <<: *common
+    image: opencode:latest
+    build:
+      context: .
+      target: opencode
+      args:
+        UID: ${AGENT_UID:-1000}
+        GID: ${AGENT_GID:-1000}
+    volumes:
+      - opencode:/home/agent
+      - ${WORKSPACE_PATH:-./workspace}:/home/agent/workspace
+      - ${SKILLS_PATH:-./skills}:/home/agent/.config/opencode/skills
+      - ${OPENCODE_JSON:-./default/opencode.json}:/home/agent/.config/opencode/opencode.json
+    profiles: [opencode]
+
 volumes:
   pi:
   claude:
   codex:
   tau:
+  opencode:
