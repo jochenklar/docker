@@ -33,6 +33,9 @@ bash: setup
 build:
 	docker compose build $(AGENT)
 
+mlx:
+	mlx_lm.server --port 4040
+
 setup:
 	mkdir -p $(WORKSPACE_PATH)
 ifeq ($(shell id -u),0)
